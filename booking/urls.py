@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from rest_framework_jwt.views import obtain_jwt_token
-
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 from hotels import views
 
 urlpatterns = [
@@ -33,6 +35,6 @@ urlpatterns = [
 
     path('profile/', views.Profile.as_view(), name="profile"),
 
-    path('login/', obtain_jwt_token, name="login"),
+    path('login/', TokenObtainPairView.as_view(), name="login"),
     path('register/',  views.Register.as_view() , name="register"),
 ]
